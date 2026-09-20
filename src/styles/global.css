@@ -208,6 +208,7 @@
   }
 
   .lookbook-bar {
+    display: none;
     position: absolute;
     right: 6%;
     bottom: 6%;
@@ -254,6 +255,11 @@
     transform: scaleY(0);
     transform-origin: top center;
     background: var(--color-gilt);
+  }
+
+  [data-lookbook-track] {
+    display: flex;
+    flex-direction: column;
   }
 
   .ticker-track {
@@ -325,7 +331,32 @@
     width: 1.85rem;
   }
 
-  .lookbook-folio {
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  [data-lookbook] {
+    height: 100svh;
+  }
+
+  [data-lookbook-clip] {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  [data-lookbook-track] {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: max-content;
+  }
+
+  [data-lookbook-track] > article {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .lookbook-folio,
+  .lookbook-bar {
     display: block;
   }
 }
@@ -342,6 +373,7 @@
 
   [data-hero-line] {
     animation: none;
+    transform: none;
   }
 
   .lookbook-plate {

@@ -1,9 +1,15 @@
 ---
 import { contact } from "../content/contact";
 import { services } from "../content/services";
+import { site } from "../content/site";
 ---
 
-<form id="enquiry" class="theme-ivory bg-ivory p-6 text-ink sm:p-10 lg:p-12" novalidate>
+<form
+  id="enquiry"
+  class="theme-ivory bg-ivory p-6 text-ink sm:p-10 lg:p-12"
+  novalidate
+  data-enquiry-to={site.email}
+>
   <div class="grid gap-8 sm:grid-cols-2">
     <div class="sm:col-span-1">
       <label for="name" class="kicker-ink">Name</label>
@@ -166,9 +172,23 @@ import { services } from "../content/services";
         return;
       }
 
-      status.textContent = "Received. A strategist will write within two business days.";
-      form.reset();
-      checks.forEach(([key]) => setError(key, ""));
+      const recipient = form.dataset.enquiryTo ?? "studio@kuroaxe.com";
+      const body = [
+        `Name: ${name}`,
+        `Work email: ${email}`,
+        `Company: ${company}`,
+        phone ? `Phone: ${phone}` : "",
+        `Services: ${selected.join(", ")}`,
+        `Budget: ${budget}`,
+        `Timeline: ${timeline}`,
+        "",
+        details,
+      ]
+        .filter((line) => line !== "")
+        .join("\n");
+      const mailto = `mailto:${recipient}?subject=${encodeURIComponent(`Enquiry — ${company}`)}&body=${encodeURIComponent(body)}`;
+      status.textContent = `Opening your email client. If nothing appears, write to ${recipient}.`;
+      window.location.href = mailto;
     });
   }
 </script>

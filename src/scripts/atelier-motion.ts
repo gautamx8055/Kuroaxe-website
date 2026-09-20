@@ -2,10 +2,20 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 export function initAtelierMotion() {
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const mm = gsap.matchMedia();
+
+  document.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((line) => {
+    const reveal = () => {
+      line.style.animation = "none";
+      line.style.transform = "none";
+    };
+    line.addEventListener("animationend", reveal, { once: true });
+    window.setTimeout(reveal, 2000);
+  });
 
   if (!reduce) {
     const cue = document.querySelector("[data-scroll-cue]");
@@ -26,6 +36,14 @@ export function initAtelierMotion() {
     const panels = gsap.utils.toArray<HTMLElement>("[data-lookbook-panel]");
     if (!lookbook || !track || panels.length === 0) return;
 
+    const articles = gsap.utils.toArray<HTMLElement>("[data-lookbook-track] > article");
+    const sizePlates = () => {
+      const width = lookbook.offsetWidth;
+      articles.forEach((article) => {
+        article.style.width = `${width}px`;
+      });
+    };
+
     const applyPlate = (progress: number) => {
       const last = Math.max(panels.length - 1, 1);
       const active = Math.round(progress * last);
@@ -41,18 +59,21 @@ export function initAtelierMotion() {
       });
     };
 
+    sizePlates();
     applyPlate(0);
+    ScrollTrigger.addEventListener("refreshInit", sizePlates);
 
     const tween = gsap.to(track, {
-      x: () => -(track.scrollWidth - window.innerWidth),
+      x: () => -(track.scrollWidth - lookbook.offsetWidth),
       ease: "none",
       scrollTrigger: {
         trigger: lookbook,
         pin: true,
+        pinSpacing: true,
         scrub: 0.8,
         anticipatePin: 1,
         invalidateOnRefresh: true,
-        end: () => `+=${Math.max(track.scrollWidth - window.innerWidth, 900)}`,
+        end: () => `+=${Math.max(track.scrollWidth - lookbook.offsetWidth, 900)}`,
         onUpdate: (self) => {
           if (bar) bar.style.transform = `scaleX(${self.progress})`;
           applyPlate(self.progress);
@@ -61,13 +82,25 @@ export function initAtelierMotion() {
     });
 
     return () => {
+      ScrollTrigger.removeEventListener("refreshInit", sizePlates);
       tween.scrollTrigger?.kill();
       tween.kill();
+      gsap.set(track, { clearProps: "transform,x" });
+      articles.forEach((article) => article.style.removeProperty("width"));
+      panels.forEach((panel) => {
+        panel.style.removeProperty("--plate-scale");
+        panel.style.removeProperty("--plate-dim");
+      });
+      if (bar) bar.style.transform = "";
+      if (folio) {
+        folio.textContent = `01 / ${String(panels.length).padStart(2, "0")}`;
+      }
     };
   });
 
   mm.add("(prefers-reduced-motion: no-preference)", () => {
     const triggers: ScrollTrigger[] = [];
+    const tweens: gsap.core.Tween[] = [];
 
     document.querySelectorAll<HTMLElement>("[data-hero-frame]").forEach((frame) => {
       const hero = frame.closest<HTMLElement>("[data-hero]") ?? frame.parentElement;
@@ -86,6 +119,7 @@ export function initAtelierMotion() {
           },
         },
       );
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
@@ -107,6 +141,7 @@ export function initAtelierMotion() {
           },
         },
       );
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
@@ -128,6 +163,7 @@ export function initAtelierMotion() {
           },
         },
       );
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     }
 
@@ -143,36 +179,40 @@ export function initAtelierMotion() {
           scrollTrigger: { scrub: 0.3, start: "top top", end: "bottom bottom" },
         },
       );
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     }
 
     document.querySelectorAll<HTMLElement>("[data-process-step]").forEach((step) => {
       const tween = gsap.fromTo(
         step,
-        { opacity: 0.18, y: 48 },
+        { y: 36 },
         {
-          opacity: 1,
           y: 0,
           ease: "none",
+          immediateRender: false,
           scrollTrigger: {
             trigger: step,
-            start: "top 86%",
-            end: "top 52%",
+            start: "top 88%",
+            end: "top 58%",
             scrub: 0.5,
           },
         },
       );
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
     const ticker = document.querySelector<HTMLElement>("[data-ticker]");
     if (ticker) {
-      gsap.to(ticker, {
-        xPercent: -50,
-        duration: 42,
-        ease: "none",
-        repeat: -1,
-      });
+      tweens.push(
+        gsap.to(ticker, {
+          xPercent: -50,
+          duration: 42,
+          ease: "none",
+          repeat: -1,
+        }),
+      );
     }
 
     document.querySelectorAll<HTMLElement>("[data-chapter]").forEach((section) => {
@@ -209,11 +249,14 @@ export function initAtelierMotion() {
           el.textContent = `${prefix}${rounded}${suffix}`;
         },
       });
+      tweens.push(tween);
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
     return () => {
       triggers.forEach((t) => t.kill());
+      tweens.forEach((t) => t.kill());
+      if (ticker) gsap.set(ticker, { clearProps: "transform" });
     };
   });
 

@@ -5,7 +5,7 @@ import Mark from "./Mark.astro";
 const raw = Astro.url.pathname.replace(/\/$/, "") || "/";
 
 function isActive(href: string) {
-  if (href === "/#work") return raw === "/";
+  if (href.includes("#")) return false;
   if (href === "/services") return raw === "/services" || raw.startsWith("/services/");
   return raw === href;
 }
@@ -63,6 +63,7 @@ function isActive(href: string) {
       class="inline-flex min-h-11 min-w-11 items-center justify-center text-ivory lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
+      aria-label="Open menu"
       data-menu-toggle
     >
       <span class="sr-only">Open menu</span>
@@ -113,16 +114,21 @@ function isActive(href: string) {
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.getElementById("mobile-menu");
   if (toggle instanceof HTMLButtonElement && menu) {
+    const label = toggle.querySelector(".sr-only");
     const open = () => {
       menu.hidden = false;
       menu.classList.remove("hidden");
       toggle.setAttribute("aria-expanded", "true");
+      toggle.setAttribute("aria-label", "Close menu");
+      if (label) label.textContent = "Close menu";
       document.body.style.overflow = "hidden";
     };
     const close = () => {
       menu.hidden = true;
       menu.classList.add("hidden");
       toggle.setAttribute("aria-expanded", "false");
+      toggle.setAttribute("aria-label", "Open menu");
+      if (label) label.textContent = "Open menu";
       document.body.style.overflow = "";
     };
     toggle.addEventListener("click", () => {

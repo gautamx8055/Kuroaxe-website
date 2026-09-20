@@ -11,6 +11,7 @@ interface Props {
   path: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   theme?: "ink" | "ivory";
+  index?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   path,
   jsonLd,
   theme = "ink",
+  index = true,
 } = Astro.props;
 ---
 
@@ -29,7 +31,7 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <Seo title={title} description={description} path={path} />
+    <Seo title={title} description={description} path={path} index={index} />
     {jsonLd && <JsonLd data={jsonLd} />}
   </head>
   <body class:list={[theme === "ivory" ? "bg-ivory text-ink" : "bg-ink text-ivory"]}>

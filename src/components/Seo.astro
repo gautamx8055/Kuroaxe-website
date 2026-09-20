@@ -6,9 +6,10 @@ interface Props {
   description: string;
   path: string;
   ogType?: "website" | "article";
+  index?: boolean;
 }
 
-const { title, description, path, ogType = "website" } = Astro.props;
+const { title, description, path, ogType = "website", index = true } = Astro.props;
 const canonical = new URL(path, site.url).href;
 const ogImage = new URL("/og.svg", site.url).href;
 const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
@@ -16,8 +17,8 @@ const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
-<meta name="robots" content="index, follow" />
+{index && <link rel="canonical" href={canonical} />}
+<meta name="robots" content={index ? "index, follow" : "noindex, follow"} />
 <meta property="og:type" content={ogType} />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={fullTitle} />

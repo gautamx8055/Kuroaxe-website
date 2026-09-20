@@ -3,15 +3,16 @@ import { plates } from "../content/work";
 import AtelierStill from "./AtelierStill.astro";
 ---
 
-<section id="work" class="relative overflow-hidden bg-ink" data-lookbook data-chapter="work">
+<section id="work" class="relative bg-ink" data-lookbook data-chapter="work">
   <p class="lookbook-folio kicker" data-lookbook-folio>01 / 04</p>
-  <div class="lookbook-bar hidden lg:block" aria-hidden="true">
+  <div class="lookbook-bar" aria-hidden="true">
     <span data-lookbook-bar></span>
   </div>
-  <div data-lookbook-track class="flex flex-col lg:h-[100svh] lg:w-max lg:flex-row lg:flex-nowrap">
+  <div class="lookbook-clip" data-lookbook-clip>
+    <div data-lookbook-track>
     {
       plates.map((plate) => (
-        <article class="relative min-h-[88svh] w-full shrink-0 overflow-hidden lg:h-full lg:w-screen lg:min-h-0">
+        <article class="relative min-h-[88svh] w-full shrink-0 overflow-hidden">
           <div class="lookbook-plate absolute inset-0" data-lookbook-panel>
             <AtelierStill
               variant={plate.still}
@@ -46,5 +47,6 @@ import AtelierStill from "./AtelierStill.astro";
         </article>
       ))
     }
+    </div>
   </div>
 </section>
