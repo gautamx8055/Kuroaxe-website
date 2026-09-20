@@ -1,0 +1,39 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  body?: string;
+  href?: string;
+  cta?: string;
+  theme?: "ink" | "ivory";
+}
+
+const {
+  kicker = "Private enquiry",
+  title,
+  body,
+  href = "/contact",
+  cta = "Grow with Kuroaxe",
+  theme = "ink",
+} = Astro.props;
+---
+
+<section class:list={[theme === "ivory" ? "theme-ivory" : "bg-ink text-ivory"]}>
+  <div class="shell py-24 lg:py-32">
+    <div class="hairline mb-16"></div>
+    <div class="grid items-end gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-8">
+        <p class:list={[theme === "ivory" ? "kicker-ink" : "kicker"]}>{kicker}</p>
+        <h2 class="display mt-6 text-5xl text-current sm:text-6xl lg:text-7xl">{title}</h2>
+        {
+          body && (
+            <p class:list={["mt-6 max-w-xl text-base", theme === "ivory" ? "text-ink/70" : "text-bone"]}>{body}</p>
+          )
+        }
+      </div>
+      <div class="lg:col-span-4 lg:justify-self-end">
+        <a class:list={[theme === "ivory" ? "btn-ink" : "btn-primary"]} href={href}>{cta}</a>
+      </div>
+    </div>
+  </div>
+</section>

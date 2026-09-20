@@ -1,0 +1,36 @@
+---
+interface Props {
+  items: { question: string; answer: string }[];
+  ink?: boolean;
+}
+
+const { items, ink = false } = Astro.props;
+---
+
+<div class="divide-y divide-gilt/20">
+  {
+    items.map((item) => (
+      <details class="group py-6">
+        <summary class="flex cursor-pointer list-none items-start justify-between gap-6 text-left">
+          <span class="font-display text-2xl font-light leading-snug sm:text-3xl">{item.question}</span>
+          <span
+            class:list={[
+              "mt-2 block h-px w-6 shrink-0 transition-transform duration-300 group-open:rotate-90",
+              ink ? "bg-ink/40" : "bg-gilt/70",
+            ]}
+            aria-hidden="true"
+          />
+        </summary>
+        <p class:list={["mt-4 max-w-2xl text-sm leading-relaxed", ink ? "text-ink/70" : "text-bone"]}>
+          {item.answer}
+        </p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

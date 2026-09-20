@@ -1,0 +1,50 @@
+---
+import { plates } from "../content/work";
+import AtelierStill from "./AtelierStill.astro";
+---
+
+<section id="work" class="relative overflow-hidden bg-ink" data-lookbook data-chapter="work">
+  <p class="lookbook-folio kicker" data-lookbook-folio>01 / 04</p>
+  <div class="lookbook-bar hidden lg:block" aria-hidden="true">
+    <span data-lookbook-bar></span>
+  </div>
+  <div data-lookbook-track class="flex flex-col lg:h-[100svh] lg:w-max lg:flex-row lg:flex-nowrap">
+    {
+      plates.map((plate) => (
+        <article class="relative min-h-[88svh] w-full shrink-0 overflow-hidden lg:h-full lg:w-screen lg:min-h-0">
+          <div class="lookbook-plate absolute inset-0" data-lookbook-panel>
+            <AtelierStill
+              variant={plate.still}
+              parallax={false}
+              class="absolute inset-0 h-full min-h-full w-full"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/15" />
+            <div class="shell relative z-10 flex h-full flex-col justify-end py-16 lg:justify-center lg:pb-28 lg:pt-40">
+              <p class="kicker">
+                {plate.folio} — {plate.client} · {plate.sector}
+              </p>
+              <h3 class="display mt-5 max-w-3xl text-4xl sm:text-6xl lg:text-7xl">{plate.title}</h3>
+              <p class="mt-6 max-w-xl text-sm leading-relaxed text-ivory/80 sm:text-base">{plate.narrative}</p>
+              <dl class="mt-8 grid max-w-2xl gap-8 sm:grid-cols-3">
+                <div>
+                  <dt class="kicker">Channels</dt>
+                  <dd class="mt-2 text-sm text-ivory">{plate.channels.join(" · ")}</dd>
+                </div>
+                <div>
+                  <dt class="kicker">{plate.metricLabel}</dt>
+                  <dd class="mt-2 font-display text-4xl text-gilt sm:text-5xl" data-count={plate.metric}>
+                    {plate.metric}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="kicker">Outcome</dt>
+                  <dd class="mt-2 text-sm text-bone">{plate.outcome}</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

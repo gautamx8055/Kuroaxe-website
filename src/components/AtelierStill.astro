@@ -1,0 +1,381 @@
+---
+import type { Plate } from "../content/work";
+import type { Service } from "../content/services";
+
+type Variant =
+  | "hero"
+  | Plate["still"]
+  | Service["jewel"]
+  | "seo"
+  | "smm"
+  | "performance"
+  | "arvr"
+  | "graphics"
+  | "video";
+
+interface Props {
+  variant?: Variant;
+  caption?: string;
+  class?: string;
+  parallax?: boolean;
+}
+
+const { variant = "hero", caption, class: className = "", parallax = true } = Astro.props;
+---
+
+<figure class:list={["relative overflow-hidden bg-charcoal", className]}>
+  <div class="absolute inset-0 will-change-transform" data-still={variant} data-parallax={parallax ? "" : undefined} aria-hidden="true">
+    <div class="wash"></div>
+    <div class="glow"></div>
+    <div class="rule-v"></div>
+    <div class="rule-h"></div>
+    {
+      variant === "hero" && (
+        <div class="frames">
+          <span class="frame f1" />
+          <span class="frame f2" />
+          <span class="frame f3" />
+        </div>
+      )
+    }
+    {
+      variant === "lumen" && (
+        <svg class="abs-full" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="lumen" cx="50%" cy="38%" r="48%">
+              <stop offset="0%" stop-color="#E8D5B5" stop-opacity="0.55" />
+              <stop offset="55%" stop-color="#C4A574" stop-opacity="0.12" />
+              <stop offset="100%" stop-color="#0A0A0A" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <ellipse cx="400" cy="360" rx="170" ry="240" fill="url(#lumen)" />
+          <rect x="392" y="560" width="16" height="180" fill="#C4A574" opacity="0.35" />
+        </svg>
+      )
+    }
+    {
+      variant === "northline" && (
+        <svg class="abs-full" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+          <path d="M80 780 L400 180 L720 780" fill="none" stroke="#9A7B4F" stroke-width="1.2" />
+          <path d="M160 780 L400 300 L640 780" fill="none" stroke="#C4A574" stroke-width="0.6" opacity="0.6" />
+          <circle cx="400" cy="180" r="5" fill="#F4EFE6" />
+        </svg>
+      )
+    }
+    {
+      variant === "vespera" && (
+        <svg class="abs-full" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+          <polygon points="400,220 470,360 400,500 330,360" fill="none" stroke="#C4A574" stroke-width="1.2" />
+          <polygon points="400,280 430,360 400,440 370,360" fill="#6B3A3A" opacity="0.45" />
+          <circle cx="400" cy="360" r="120" fill="none" stroke="#F4EFE6" stroke-opacity="0.12" />
+        </svg>
+      )
+    }
+    {
+      variant === "halcyon" && (
+        <svg class="abs-full" viewBox="0 0 800 1000" preserveAspectRatio="xMidYMid slice">
+          <path
+            d="M120 620 C220 520, 300 500, 400 560 C520 630, 620 520, 700 500"
+            fill="none"
+            stroke="#C4A574"
+            stroke-width="1.4"
+          />
+          <path d="M140 640 C260 700, 520 700, 680 520" fill="none" stroke="#F4EFE6" stroke-opacity="0.2" />
+          <rect x="60" y="200" width="120" height="1" fill="#C4A574" />
+        </svg>
+      )
+    }
+    {
+      variant === "seo" && (
+        <svg class="chart abs-pad" viewBox="0 0 400 220" preserveAspectRatio="none">
+          <polyline
+            fill="none"
+            stroke="#3D5A80"
+            stroke-width="2"
+            points="8,180 60,150 110,158 160,110 210,96 260,70 310,74 390,28"></polyline>
+          <polyline
+            fill="none"
+            stroke="#C4A574"
+            stroke-width="1.2"
+            stroke-dasharray="4 6"
+            points="8,190 70,176 140,168 210,140 280,120 390,88"></polyline>
+        </svg>
+      )
+    }
+    {
+      variant === "smm" && (
+        <div class="lookbook">
+          <span class="lb a" />
+          <span class="lb b" />
+          <span class="lb c" />
+        </div>
+      )
+    }
+    {
+      variant === "performance" && (
+        <svg class="abs-pad" viewBox="0 0 400 240">
+          <polygon points="40,20 360,20 300,80 100,80" fill="#9A7B4F" opacity="0.35" />
+          <polygon points="100,96 300,96 250,156 150,156" fill="#C4A574" opacity="0.28" />
+          <polygon points="150,172 250,172 220,220 180,220" fill="#F4EFE6" opacity="0.18" />
+        </svg>
+      )
+    }
+    {
+      variant === "arvr" && (
+        <div class="device">
+          <span class="orb" />
+          <span class="ring" />
+        </div>
+      )
+    }
+    {
+      variant === "graphics" && (
+        <div class="poster">
+          <p class="poster-k">Atelier</p>
+          <p class="poster-d">Aa</p>
+          <span class="swatch s1" />
+          <span class="swatch s2" />
+          <span class="swatch s3" />
+        </div>
+      )
+    }
+    {
+      variant === "video" && (
+        <div class="film">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      )
+    }
+  </div>
+  {
+    caption && (
+      <figcaption class="absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-4">
+        <span class="kicker">{caption}</span>
+        <span class="h-px flex-1 bg-gilt/40"></span>
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  [data-still] {
+    position: absolute;
+    inset: 0;
+  }
+
+  .wash {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 80% at 80% 10%, color-mix(in oklab, var(--color-gilt) 16%, transparent), transparent 46%),
+      linear-gradient(180deg, #161616 0%, #0a0a0a 100%);
+  }
+
+  [data-still="northline"] .wash,
+  [data-still="seo"] .wash {
+    background:
+      radial-gradient(90% 70% at 20% 80%, color-mix(in oklab, var(--color-sapphire) 28%, transparent), transparent 50%),
+      linear-gradient(180deg, #121820 0%, #0a0a0a 100%);
+  }
+
+  [data-still="vespera"] .wash,
+  [data-still="smm"] .wash {
+    background:
+      radial-gradient(80% 70% at 70% 30%, color-mix(in oklab, var(--color-burgundy) 32%, transparent), transparent 52%),
+      linear-gradient(180deg, #1a1010 0%, #0a0a0a 100%);
+  }
+
+  [data-still="arvr"] .wash {
+    background:
+      radial-gradient(70% 70% at 50% 50%, color-mix(in oklab, var(--color-tealink) 40%, transparent), transparent 55%),
+      linear-gradient(180deg, #1c2430 0%, #0a0a0a 100%);
+  }
+
+  [data-still="video"] .wash,
+  [data-still="halcyon"] .wash {
+    background:
+      radial-gradient(80% 60% at 30% 20%, color-mix(in oklab, var(--color-crimson) 26%, transparent), transparent 50%),
+      linear-gradient(180deg, #140c0e 0%, #0a0a0a 100%);
+  }
+
+  .glow {
+    position: absolute;
+    width: 42%;
+    height: 42%;
+    right: 8%;
+    top: 8%;
+    background: radial-gradient(circle, color-mix(in oklab, var(--color-gilt) 28%, transparent), transparent 70%);
+    filter: blur(12px);
+  }
+
+  .rule-v {
+    position: absolute;
+    top: 8%;
+    bottom: 8%;
+    left: 10%;
+    width: 1px;
+    background: color-mix(in oklab, var(--color-gilt) 45%, transparent);
+  }
+
+  .rule-h {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    bottom: 14%;
+    height: 1px;
+    background: color-mix(in oklab, var(--color-gilt) 28%, transparent);
+  }
+
+  .frames {
+    position: absolute;
+    inset: 16% 14% 22% 18%;
+  }
+
+  .frame {
+    position: absolute;
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 22%, transparent);
+    background: color-mix(in oklab, var(--color-ivory) 4%, transparent);
+  }
+
+  .f1 {
+    inset: 8% 28% 22% 6%;
+  }
+  .f2 {
+    inset: 22% 8% 8% 32%;
+    border-color: color-mix(in oklab, var(--color-gilt) 50%, transparent);
+  }
+  .f3 {
+    inset: 48% 42% 10% 12%;
+    background: color-mix(in oklab, var(--color-gilt) 10%, transparent);
+  }
+
+  .abs-full {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .abs-pad {
+    position: absolute;
+    inset: 18% 14% 22% 16%;
+    width: auto;
+    height: auto;
+  }
+
+  .lookbook {
+    position: absolute;
+    inset: 18% 16% 22%;
+  }
+
+  .lb {
+    position: absolute;
+    background: color-mix(in oklab, var(--color-ivory) 6%, transparent);
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 18%, transparent);
+  }
+  .lb.a {
+    inset: 0 36% 28% 0;
+  }
+  .lb.b {
+    inset: 12% 8% 16% 38%;
+    border-color: color-mix(in oklab, var(--color-gilt) 40%, transparent);
+  }
+  .lb.c {
+    inset: 58% 22% 0 18%;
+  }
+
+  .device {
+    position: absolute;
+    inset: 22% 28%;
+    border: 1px solid color-mix(in oklab, var(--color-gilt) 40%, transparent);
+    border-radius: 1.5rem;
+  }
+
+  .orb {
+    position: absolute;
+    inset: 28% 30%;
+    border-radius: 999px;
+    background: radial-gradient(circle at 35% 30%, #f4efe6, #c4a574 42%, #2f4a4a 78%);
+    opacity: 0.85;
+  }
+
+  .ring {
+    position: absolute;
+    inset: 12%;
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 20%, transparent);
+    border-radius: 999px;
+  }
+
+  .poster {
+    position: absolute;
+    inset: 16% 14% 20% 16%;
+    border: 1px solid color-mix(in oklab, var(--color-gilt) 35%, transparent);
+    padding: 1.5rem;
+  }
+
+  .poster-k {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gilt);
+  }
+
+  .poster-d {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 10vw, 7rem);
+    line-height: 0.85;
+    font-weight: 300;
+    color: var(--color-ivory);
+    margin-top: 0.6rem;
+  }
+
+  .swatch {
+    position: absolute;
+    bottom: 1.4rem;
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .s1 {
+    left: 1.5rem;
+    background: #f4efe6;
+  }
+  .s2 {
+    left: 3rem;
+    background: #c4a574;
+  }
+  .s3 {
+    left: 4.5rem;
+    background: #0a0a0a;
+    box-shadow: inset 0 0 0 1px #c4a574;
+  }
+
+  .film {
+    position: absolute;
+    inset: 24% 8%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.55rem;
+  }
+
+  .film span {
+    border: 1px solid color-mix(in oklab, var(--color-ivory) 16%, transparent);
+    background: linear-gradient(180deg, color-mix(in oklab, var(--color-crimson) 25%, transparent), transparent);
+  }
+
+  .film span:nth-child(2) {
+    transform: translateY(12%);
+  }
+  .film span:nth-child(3) {
+    transform: translateY(-8%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow {
+      filter: none;
+    }
+  }
+</style>

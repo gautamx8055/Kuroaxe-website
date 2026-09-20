@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page not found" description="This plate is not in the lookbook." path="/404">
+  <section class="shell flex min-h-[70vh] flex-col justify-center py-24">
+    <p class="kicker">404</p>
+    <h1 class="display mt-6 max-w-3xl text-6xl sm:text-8xl">This plate is not in the lookbook.</h1>
+    <p class="mt-8 max-w-md text-bone">The page may have moved, or it was never published.</p>
+    <div class="mt-10 flex gap-6">
+      <a class="btn-primary" href="/">Return home</a>
+      <a class="link-gilt py-3" href="/contact">Enquire</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,271 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AtelierStill from "../components/AtelierStill.astro";
+import Lookbook from "../components/Lookbook.astro";
+import CtaBand from "../components/CtaBand.astro";
+import { home } from "../content/home";
+import { services } from "../content/services";
+import { testimonials } from "../content/testimonials";
+import { site } from "../content/site";
+import { organizationGraph, creativeWorkGraph } from "../lib/schema";
+
+const ticker = [
+  "Creative thinking",
+  "Strategic planning",
+  "Performance tracking",
+  "Exact execution",
+  "Long-term brand",
+  "One house standard",
+];
+
+const chapters = [
+  { id: "intro", n: "01", label: "Enter" },
+  { id: "disciplines", n: "02", label: "Rooms" },
+  { id: "work", n: "03", label: "Folio" },
+  { id: "process", n: "04", label: "Method" },
+] as const;
+---
+
+<BaseLayout
+  title="Kuroaxe — Make your brand impossible to ignore"
+  description={site.defaultDescription}
+  path="/"
+  jsonLd={[
+    organizationGraph(),
+    creativeWorkGraph({
+      name: "Kuroaxe atelier",
+      description: site.defaultDescription,
+      path: "/",
+    }),
+  ]}
+>
+  <nav class="chapter-rail" aria-label="On this page">
+    {
+      chapters.map((chapter, index) => (
+        <a
+          href={`#${chapter.id === "intro" ? "main" : chapter.id}`}
+          data-chapter-link={chapter.id}
+          class:list={[index === 0 && "is-current"]}
+        >
+          <span>{chapter.label}</span>
+          <span class="tick" aria-hidden="true"></span>
+        </a>
+      ))
+    }
+  </nav>
+
+  <section class="relative min-h-[100svh] overflow-hidden" data-hero data-chapter="intro">
+    <div class="absolute inset-0" data-hero-frame>
+      <AtelierStill variant="hero" caption="" class="h-full min-h-[100svh] w-full" />
+      <div class="hero-veil"></div>
+    </div>
+    <div class="shell relative z-10 flex min-h-[100svh] flex-col justify-end pb-14 pt-28 lg:pb-20">
+      <p class="kicker">{home.hero.kicker}</p>
+      <h1 class="display mt-8 text-[clamp(2.85rem,6.8vw,6.85rem)]">
+        <span class="clip"><span class="block" data-hero-line>{home.hero.lineOne}</span></span>
+        <span class="clip">
+          <span class="block italic text-gilt" data-hero-line>{home.hero.lineTwo}</span>
+        </span>
+      </h1>
+      <p class="measure mt-8 max-w-xl text-base text-ivory/80 sm:text-lg">{home.hero.lede}</p>
+      <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+        <a class="btn-primary" href={home.hero.primary.href}>{home.hero.primary.label}</a>
+        <a class="link-gilt px-1 py-3" href={home.hero.secondary.href}>{home.hero.secondary.label}</a>
+      </div>
+      <div class="mt-16 flex items-center gap-5">
+        <span class="hidden h-16 w-px origin-top bg-gilt lg:block" data-scroll-cue aria-hidden="true"></span>
+        <p class="kicker">Scroll the folio</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-gilt/15" aria-label="Client trust">
+    <div class="shell py-16 lg:py-20">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <p class="kicker">{home.trust.kicker}</p>
+        <p class="max-w-2xl text-sm leading-relaxed text-bone">{home.trust.statement}</p>
+      </div>
+      <ul class="mt-12 grid grid-cols-2 gap-y-7 sm:grid-cols-3 lg:grid-cols-6">
+        {
+          home.trust.marks.map((mark) => (
+            <li class="font-display text-[1.7rem] italic leading-none text-ivory/80 sm:text-3xl">{mark}</li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <div class="overflow-hidden border-b border-gilt/15 py-4" aria-hidden="true">
+    <div class="ticker-track" data-ticker>
+      <p class="flex shrink-0 gap-12 whitespace-nowrap px-8 font-display text-2xl italic text-ivory/55 sm:text-3xl">
+        {ticker.map((item) => <span class="shrink-0">{item} <span class="text-gilt">—</span></span>)}
+      </p>
+      <p class="flex shrink-0 gap-12 whitespace-nowrap px-8 font-display text-2xl italic text-ivory/55 sm:text-3xl">
+        {ticker.map((item) => <span class="shrink-0">{item} <span class="text-gilt">—</span></span>)}
+      </p>
+    </div>
+  </div>
+
+  <section class="theme-ivory" id="disciplines" data-chapter="disciplines">
+    <div class="shell py-24 lg:py-36">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <p class="kicker-ink">{home.servicesIntro.kicker}</p>
+          <h2 class="display mt-5 text-5xl text-ink sm:text-6xl lg:text-7xl">{home.servicesIntro.title}</h2>
+        </div>
+        <p class="text-base leading-relaxed text-ink/70 lg:col-span-6 lg:col-start-7 lg:pt-12">
+          {home.servicesIntro.body}
+        </p>
+      </div>
+      <ul class="mt-20">
+        {
+          services.map((service, index) => (
+            <li class="border-t border-ink/10 last:border-b">
+              <a
+                href={service.href}
+                class="group grid gap-3 py-9 transition-colors duration-500 hover:text-antique sm:grid-cols-12 sm:items-baseline"
+              >
+                <span class="kicker-ink sm:col-span-2">0{index + 1}</span>
+                <span class="display text-4xl sm:col-span-3 sm:text-5xl">{service.title}</span>
+                <span class="text-sm leading-relaxed text-ink/65 sm:col-span-6">{service.short}</span>
+                <span class="hidden text-right text-[0.68rem] uppercase tracking-[0.22em] text-ink/40 group-hover:text-ink sm:col-span-1 sm:block">
+                  Open
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-10">
+        <a class="link-gilt !text-ink" href="/services">Read every discipline</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="shell py-16 lg:py-24">
+    <p class="kicker">Lookbook</p>
+    <h2 class="display mt-5 max-w-4xl text-5xl sm:text-6xl lg:text-7xl">Campaigns, curated—not catalogued.</h2>
+    <p class="measure mt-6 text-bone">
+      On a wide screen, keep scrolling: the folio turns sideways, like a private magazine. Each plate names the
+      constraint, the rooms we used, and the number that justified the season.
+    </p>
+  </div>
+
+  <Lookbook />
+
+  <section class="theme-ivory">
+    <div class="shell grid gap-16 py-24 lg:grid-cols-12 lg:py-36">
+      <div class="lg:col-span-5">
+        <p class="kicker-ink">{home.why.kicker}</p>
+        <h2 class="display mt-6 text-5xl text-ink sm:text-6xl">{home.why.manifesto}</h2>
+      </div>
+      <div class="prose-luxe text-ink/75 lg:col-span-6 lg:col-start-7">
+        {home.why.essay.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <ol class="grid gap-px bg-ink/10 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-5">
+        {
+          home.why.points.map((point) => (
+            <li class="bg-ivory p-7 lg:p-8">
+              <h3 class="font-display text-2xl">{point.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ink/65">{point.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="relative" id="process" data-process data-chapter="process">
+    <div class="shell grid gap-16 py-24 lg:grid-cols-12 lg:py-32">
+      <div class="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+        <p class="kicker">Growth process</p>
+        <h2 class="display mt-5 text-5xl sm:text-6xl">From strategy to scale, in order.</h2>
+        <p class="mt-6 max-w-sm text-sm text-bone">
+          This sequence is not decoration. Each stage earns the next. We do not launch what has not been directed, and we
+          do not scale what has not been true.
+        </p>
+        <div class="process-spine hidden lg:block" aria-hidden="true">
+          <span data-process-fill></span>
+        </div>
+      </div>
+      <ol class="lg:col-span-7 lg:col-start-6">
+        {
+          home.process.map((step) => (
+            <li class="border-t border-gilt/20 py-12 last:border-b" data-process-step>
+              <p class="kicker">{step.n}</p>
+              <h3 class="mt-4 font-display text-4xl sm:text-5xl">{step.title}</h3>
+              <p class="mt-4 max-w-xl text-sm leading-relaxed text-bone sm:text-base">{step.body}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="theme-ivory">
+    <div class="shell grid gap-14 py-24 lg:grid-cols-12 lg:py-32">
+      <div class="lg:col-span-5">
+        <p class="kicker-ink">{home.engagement.kicker}</p>
+        <h2 class="display mt-5 text-5xl text-ink sm:text-6xl">{home.engagement.title}</h2>
+        <p class="mt-6 text-base leading-relaxed text-ink/70">{home.engagement.body}</p>
+      </div>
+      <ul class="lg:col-span-6 lg:col-start-7">
+        {
+          home.engagement.items.map((item) => (
+            <li class="border-t border-ink/10 py-8 last:border-b">
+              <h3 class="font-display text-3xl">{item.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ink/65">{item.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-charcoal">
+    <div class="shell py-24 lg:py-32">
+      <p class="kicker">Results</p>
+      <h2 class="display mt-5 max-w-3xl text-5xl sm:text-6xl">Proof, kept few, named honestly.</h2>
+      <p class="measure mt-6 text-bone">
+        Figures are from named seasons with the houses above. They are not a promise of identical returns. They are
+        evidence that restraint and measurement can share a table.
+      </p>
+      <ul class="mt-16 grid gap-px bg-gilt/15 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          home.results.map((stat) => (
+            <li class="bg-charcoal p-8 sm:p-10">
+              <p class="font-display text-5xl text-gilt sm:text-6xl" data-count={stat.value}>
+                {stat.value}
+              </p>
+              <p class="mt-4 max-w-xs text-sm leading-relaxed text-bone">{stat.label}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="shell py-24 lg:py-32">
+      <p class="kicker">Voices</p>
+      <h2 class="display mt-5 text-5xl sm:text-6xl">What it is like to be in the work.</h2>
+      <div class="mt-16 grid gap-16 lg:grid-cols-12">
+        {
+          testimonials.map((item, index) => (
+            <figure class:list={["lg:col-span-6", index % 2 === 1 && "lg:mt-20"]}>
+              <blockquote>
+                <p class="font-display text-3xl italic leading-snug text-ivory sm:text-4xl">“{item.quote}”</p>
+              </blockquote>
+              <figcaption class="mt-8">
+                <p class="text-sm text-ivory">{item.name}</p>
+                <p class="kicker mt-2">{item.role}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title={home.cta.title} body={home.cta.body} kicker={home.cta.kicker} />
+</BaseLayout>

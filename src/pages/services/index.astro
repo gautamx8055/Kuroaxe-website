@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import { services } from "../../content/services";
+import { organizationGraph } from "../../lib/schema";
+
+const description =
+  "Search, social, performance, AR/VR, graphics, and film—six Kuroaxe disciplines under one editorial standard.";
+---
+
+<BaseLayout
+  title="Services"
+  description={description}
+  path="/services"
+  jsonLd={organizationGraph()}
+>
+  <section class="shell py-20 lg:py-28">
+    <p class="kicker">Contents</p>
+    <h1 class="display mt-6 max-w-4xl text-6xl sm:text-7xl lg:text-8xl">
+      <span class="clip"><span class="block" data-hero-line>The house, by discipline.</span></span>
+    </h1>
+    <p class="mt-8 max-w-2xl font-display text-2xl italic leading-snug text-ivory/80">
+      Six rooms. One grammar. Most houses only need two or three open at once.
+    </p>
+    <p class="measure mt-8 text-base leading-relaxed text-bone">
+      Every service has its own visual climate. The grammar does not change: restraint, craft, and a number that
+      matters. Read them as chapters of one standard—not as a catalogue of add-ons. A strategy session is how we decide
+      which doors to open, and which to leave closed.
+    </p>
+  </section>
+
+  <section class="theme-ivory">
+    <div class="shell py-6">
+      <ol>
+        {
+          services.map((service, index) => (
+            <li class="border-t border-ink/10 last:border-b">
+              <a href={service.href} class="group grid gap-6 py-12 lg:grid-cols-12 lg:items-end">
+                <span class="kicker-ink lg:col-span-2">0{index + 1}</span>
+                <div class="lg:col-span-4">
+                  <p class="kicker-ink">{service.kicker}</p>
+                  <h2 class="display mt-3 text-5xl text-ink">{service.title}</h2>
+                </div>
+                <p class="max-w-lg text-sm leading-relaxed text-ink/65 lg:col-span-5">{service.short}</p>
+                <span class="hidden text-right text-[0.7rem] uppercase tracking-[0.22em] text-ink/40 group-hover:text-ink lg:col-span-1 lg:block">
+                  Open
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Tell us which discipline the brief needs."
+    body="Most engagements begin as a conversation, not a menu. If several rooms are required, we will say so—and what we would leave closed."
+  />
+</BaseLayout>
