@@ -1,6 +1,6 @@
 # Kuroaxe
 
-Premium marketing-house website for **Kuroaxe** — a creative growth partner for ambitious brands. Built with Astro, TypeScript, and Tailwind CSS 4.
+Premium marketing-house website for **Kuroaxe**: a creative growth partner for ambitious brands. Built with Astro, TypeScript, and Tailwind CSS 4.
 
 Tagline: **Make your brand impossible to ignore.**
 
@@ -55,7 +55,7 @@ Routes: `/`, `/services`, `/services/{seo,smm,performance-marketing,ar-vr,graphi
 
 ## Design
 
-Ink, charcoal, midnight, ivory, and gilt. Libre Bodoni + Public Sans. Pinned lookbook, process spine, silk scroll. See `design-system/kuroaxe/MASTER.md`.
+Orange `#FF6B35` for script and doodles. Turquoise `#20D9C2` for washes and fills (in place of wine). Yellow `#EBFF3D`. Black, white. Sora + Inter + Caveat Brush. Pinned lookbook. See `design-system/kuroaxe/MASTER.md`.
 
 ## Deploy
 

@@ -1,37 +1,37 @@
-# Kuroaxe — Master design system
+# Kuroaxe | Master design system
 
-Source of truth for the luxury editorial site. Do not drift toward agency-template color, card grids, or neon.
+Source of truth for the jazz-stage site. Palette and type follow the studio board.
 
 ## Position
 
-Kuroaxe is a premium creative growth partner for ambitious brands — not a low-cost marketing agency.
-
-Quality bar: the site must feel luxurious, exclusive, editorial, and meticulously crafted.
+Kuroaxe is a premium creative growth partner. The **words** stay house-serious. The **stage** is black, white, and turquoise: collage stills, yellow hits, orange script.
 
 ## Tokens
 
 | Name | Hex | Role |
 |---|---|---|
-| Ink | `#07060A` | Lacquer canvas |
-| Charcoal | `#12111A` | Raised surfaces |
-| Midnight | `#161821` | Video / AR fields |
-| Ivory | `#F6F1E7` | Reading chapters |
-| Gilt | `#D4B98A` | Champagne accents only |
-| Bone | `#A89F93` | Captions on dark |
+| Turquoise | `#20D9C2` | Wash, fills, icons, links |
+| Orange | `#FF6B35` | Script, doodles, hover shout |
+| Dark orange | `#FF8A3D` | Secondary hits |
+| Yellow | `#EBFF3D` | CTA pills, stats, highlighter marks |
+| Black / ink | `#111111` | Type, dark bands, footer |
+| White | `#FFFFFF` | Spotlight sections, cards |
+
+Usage: turquoise leads the wash, then white, black, orange, yellow.
 
 ## Type
 
-- Display: **Libre Bodoni** (magazine Didot; true italics for the second hero line and pull quotes)
-- Body / UI: **Public Sans** (quiet grotesque, not a tech rounded sans)
-- Kickers: Public Sans uppercase, tracking ~0.38em
+- Display / kickers / buttons: **Sora** 600–800
+- Body / nav: **Inter** 400–600
+- Script: **Caveat Brush** on one existing headline line (e.g. `into momentum.`), orange
 
 ## Signature
 
-1. Full-bleed cinematic hero: clipped line reveal, then the still recedes into a plate as you leave
-2. Pinned horizontal lookbook (desktop) — scroll to turn plates; inactive plates dim and scale
-3. Process spine: gilt line that fills as the sequence is read
-4. Gilt page progress and chapter rail on home
+1. Split hero: Sora thesis + Caveat Brush second line in orange, collage still
+2. Pinned horizontal lookbook (desktop) as collage plates
+3. Six discipline cards on white
+4. Yellow pill CTAs
 
 ## Motion
 
-GSAP ScrollTrigger. Max one pin on home (the lookbook). Parallax scale on stills. No generic fade-up of every heading. Honor `prefers-reduced-motion` (no pin, no clip).
+GSAP ScrollTrigger. Max one pin on home (the lookbook). Honor `prefers-reduced-motion`.

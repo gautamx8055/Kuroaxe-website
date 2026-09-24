@@ -3,14 +3,14 @@ export const home = {
     kicker: "Creative growth house  ·  Est. atelier",
     lineOne: "We turn attention",
     lineTwo: "into momentum.",
-    lede: "Kuroaxe is a premium creative growth partner for ambitious brands. Strategy, craft, content, technology, and performance sit under one house standard—so the work is not merely seen. It is remembered, chosen, and compounded.",
+    lede: "Kuroaxe is a premium creative growth partner for ambitious brands. Strategy, craft, content, technology, and performance sit under one house standard, so the work is not merely seen. It is remembered, chosen, and compounded.",
     primary: { label: "Grow with Kuroaxe", href: "/contact" },
     secondary: { label: "View the lookbook", href: "/#work" },
   },
   trust: {
     kicker: "Selected houses",
     statement:
-      "We keep a short roster by design. Campaigns remain confidential until a client wishes otherwise. The names below are representative of the standard we hold—heritage, hospitality, jewellery, automotive, and private travel.",
+      "We keep a short roster by design. Campaigns remain confidential until a client wishes otherwise. The names below are representative of the standard we hold: heritage, hospitality, jewellery, automotive, and private travel.",
     marks: ["Maison Lumen", "Northline", "Vespera", "Halcyon Motor", "Atelier No. 9", "Cairn"],
   },
   servicesIntro: {
@@ -22,13 +22,13 @@ export const home = {
     kicker: "The standard",
     manifesto: "Most agencies sell activity. We sell inevitability.",
     essay: [
-      "Inevitability is the feeling that a brand was always going to become this—that the film, the search page, the salon, and the advertisement were written by the same hand. It is not volume. It is not a quarter of noise followed by a quiet year.",
+      "Inevitability is the feeling that a brand was always going to become this: that the film, the search page, the salon, and the advertisement were written by the same hand. It is not volume. It is not a quarter of noise followed by a quiet year.",
       "Clients come to Kuroaxe when they have outgrown the low-cost model: too many channels, too little judgement, work that expires the week it launches. We prefer a short roster, senior attention, and seasons long enough for the market to tell the truth.",
     ],
     points: [
       {
         title: "Creative thinking",
-        body: "Ideas with a spine. If it cannot be named in a sentence—and defended in a room that includes finance—it is not ready. Taste is a method, not a mood board.",
+        body: "Ideas with a spine. If it cannot be named in a sentence, and defended in a room that includes finance, it is not ready. Taste is a method, not a mood board.",
       },
       {
         title: "Strategic planning",
@@ -52,7 +52,7 @@ export const home = {
     {
       n: "01",
       title: "Strategy",
-      body: "We begin with the constraint: audience, offer, economics, and the thing we will refuse to do. A brief is rewritten until it can be spent against. If we are the wrong house, we say so here—not after a deck.",
+      body: "We begin with the constraint: audience, offer, economics, and the thing we will refuse to do. A brief is rewritten until it can be spent against. If we are the wrong house, we say so here, not after a deck.",
     },
     {
       n: "02",
@@ -72,7 +72,7 @@ export const home = {
     {
       n: "05",
       title: "Scale",
-      body: "More of what is true—never more of what is merely working. Scale is a privilege of a system that already looks like the house. We will not amplify a compromise.",
+      body: "More of what is true, never more of what is merely working. Scale is a privilege of a system that already looks like the house. We will not amplify a compromise.",
     },
   ],
   engagement: {
@@ -82,7 +82,7 @@ export const home = {
     items: [
       {
         title: "Atelier retainers",
-        body: "Ongoing direction across brand, content, and growth—one team, one standard, reviewed monthly in narrative rather than theatre.",
+        body: "Ongoing direction across brand, content, and growth: one team, one standard, reviewed monthly in narrative rather than theatre.",
       },
       {
         title: "Seasonal campaigns",
@@ -90,14 +90,14 @@ export const home = {
       },
       {
         title: "Identity and presence",
-        body: "Marks, guidelines, AR, and spatial work for brands whose object is the argument—jewellery, fragrance, automotive, hospitality.",
+        body: "Marks, guidelines, AR, and spatial work for brands whose object is the argument: jewellery, fragrance, automotive, hospitality.",
       },
     ],
   },
   results: [
-    { value: "+128%", label: "Qualified enquiries, year on year — private travel" },
-    { value: "6.2×", label: "Return on paid media, first season — fragrance" },
-    { value: "41%", label: "Salon bookings originated in AR — jewellery" },
+    { value: "+128%", label: "Qualified enquiries, year on year, private travel" },
+    { value: "6.2×", label: "Return on paid media, first season, fragrance" },
+    { value: "41%", label: "Salon bookings originated in AR, jewellery" },
     { value: "−44%", label: "Social volume, with stronger save-rate and memory" },
     { value: "2.1×", label: "Film completion versus the prior social system" },
     { value: "94%", label: "Lift in non-brand organic sessions across twelve months" },
@@ -105,6 +105,6 @@ export const home = {
   cta: {
     kicker: "Private enquiry",
     title: "Begin the next thing people talk about.",
-    body: "Write as you would to a house you respect. Bring the constraint, the calendar, and the number that actually matters. A partner replies within two business days—with a point of view, or with a clear no.",
+    body: "Write as you would to a house you respect. Bring the constraint, the calendar, and the number that actually matters. A partner replies within two business days, with a point of view, or with a clear no.",
   },
 } as const;

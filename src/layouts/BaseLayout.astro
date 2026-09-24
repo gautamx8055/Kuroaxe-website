@@ -37,12 +37,11 @@ const {
   <body class:list={[theme === "ivory" ? "bg-ivory text-ink" : "bg-ink text-ivory"]}>
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:bg-gilt focus:px-4 focus:py-2 focus:text-ink"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[90] focus:rounded-full focus:bg-yellow focus:px-4 focus:py-2 focus:text-ink"
     >
       Skip to content
     </a>
     <div class="grain" aria-hidden="true"></div>
-    <div class="page-cut" aria-hidden="true"></div>
     <Header />
     <main id="main" class="relative z-10">
       <slot />

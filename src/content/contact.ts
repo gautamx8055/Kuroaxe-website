@@ -1,7 +1,7 @@
 export const contact = {
   kicker: "Enquiry",
   headline: "Let’s create the next thing people talk about.",
-  lede: "Write as you would to a house you respect. Include the brand, the constraint, the calendar, and the number that actually matters. We read every brief. If we are not the right partner, we will say so quickly—with a reason, not a silence.",
+  lede: "Write as you would to a house you respect. Include the brand, the constraint, the calendar, and the number that actually matters. We read every brief. If we are not the right partner, we will say so quickly, with a reason, not a silence.",
   next: [
     {
       n: "01",
@@ -16,7 +16,7 @@ export const contact = {
     {
       n: "03",
       title: "We meet",
-      body: "A strategy conversation—not a demo of slides you have already seen.",
+      body: "A strategy conversation, not a demo of slides you have already seen.",
     },
   ],
   privacy:

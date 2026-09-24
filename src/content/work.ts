@@ -23,7 +23,7 @@ export const plates: Plate[] = [
     title: "A scent house, made inevitable",
     goal: "Move a heritage perfume house from quiet prestige to cultural conversation without cheapening the object.",
     narrative:
-      "Lumen had prestige and silence. The brief was not awareness. It was to make the house felt in rooms that had forgotten it—without turning a fragrance into a lifestyle slogan. We built a season of film, editorial social, and a retail AR chapter that treated the bottle as an object of light, not a SKU.",
+      "Lumen had prestige and silence. The brief was not awareness. It was to make the house felt in rooms that had forgotten it, without turning a fragrance into a lifestyle slogan. We built a season of film, editorial social, and a retail AR chapter that treated the bottle as an object of light, not a SKU.",
     channels: ["Brand film", "Editorial social", "Retail AR"],
     outcome: "Waitlists in four cities. Organic search for the house name overtook the hero SKU.",
     metric: "6.2×",
@@ -37,7 +37,7 @@ export const plates: Plate[] = [
     client: "Northline",
     sector: "Private travel",
     title: "Demand, without the noise",
-    goal: "Fill a limited calendar of expedition residencies with the right guests—not more traffic.",
+    goal: "Fill a limited calendar of expedition residencies with the right guests, not more traffic.",
     narrative:
       "Northline did not need more visitors. It needed the residencies filled with people who would belong there. Search, LinkedIn, and a landing atelier were tuned to qualification, not volume. The work was as much about who we declined to invite as who we reached.",
     channels: ["Search", "LinkedIn", "Landing atelier"],
@@ -55,7 +55,7 @@ export const plates: Plate[] = [
     title: "Try the light on",
     goal: "Let remote collectors experience stones with the intimacy of a salon appointment.",
     narrative:
-      "Vespera’s stones do not photograph like they behave on skin. We built an AR try-on and product film that borrowed the lighting of the salon, then connected the gesture to a specialist—not a cart. Bookings from the experience overtook walk-in introductions.",
+      "Vespera’s stones do not photograph like they behave on skin. We built an AR try-on and product film that borrowed the lighting of the salon, then connected the gesture to a specialist, not a cart. Bookings from the experience overtook walk-in introductions.",
     channels: ["AR try-on", "Product film", "CRM journeys"],
     outcome: "Salon bookings from digital try-on outpaced walk-in introductions for the first time.",
     metric: "41%",
@@ -69,9 +69,9 @@ export const plates: Plate[] = [
     client: "Halcyon Motor",
     sector: "Automotive",
     title: "A marque, not a model year",
-    goal: "Rebuild brand desire ahead of a limited coachbuilt series—without looking like a launch campaign.",
+    goal: "Rebuild brand desire ahead of a limited coachbuilt series, without looking like a launch campaign.",
     narrative:
-      "Halcyon needed desire before a list. Identity, print, and a brand film were composed as editorial, not a reveal event. The series allocated privately. Press described a marque, not a model year—which was the brief, achieved.",
+      "Halcyon needed desire before a list. Identity, print, and a brand film were composed as editorial, not a reveal event. The series allocated privately. Press described a marque, not a model year, which was the brief, achieved.",
     channels: ["Identity", "Print", "Brand film"],
     outcome: "The series allocated privately. Press treated the work as editorial, not advertising.",
     metric: "100%",

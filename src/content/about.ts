@@ -1,19 +1,19 @@
 export const about = {
   kicker: "The house",
-  heroLine: "Strategists, designers, marketers, and makers—under one standard.",
+  heroLine: "Strategists, designers, marketers, and makers, under one standard.",
   mission:
-    "To make ambitious brands impossible to ignore—without asking them to become loud, cheap, or generic.",
+    "To make ambitious brands impossible to ignore, without asking them to become loud, cheap, or generic.",
   story: [
-    "Kuroaxe is a creative growth house for brands that have outgrown noise. The name is deliberate. Kuro—black—is the discipline of restraint: the lacquer, the unlit room, the decision to leave space. The axe is the cut. What we remove is as considered as what we make. A campaign is often finished when one more idea has been refused.",
+    "Kuroaxe is a creative growth house for brands that have outgrown noise. The name is deliberate. Kuro (black) is the discipline of restraint: the lacquer, the unlit room, the decision to leave space. The axe is the cut. What we remove is as considered as what we make. A campaign is often finished when one more idea has been refused.",
     "We were formed for a simple failure we kept seeing in the market: beautiful brand work that could not find a buyer, and efficient media that made the brand look rented. Creative teams and performance teams treated each other as rival churches. The client paid twice and sounded like nobody.",
     "Kuroaxe holds both in the same edit. The film must convert. The media must look like the house. The search page must deserve the click. Social is a salon, not a slot machine. AR is hospitality, not a weekend novelty. That is not a slogan. It is how the roster is staffed.",
-    "We sit beside Codeaxes, who build products and technology. Together we can take a brand from idea to interface—try-on, showroom, landing, the object in the hand. Apart, we remain a complete marketing house: search, social, performance, presence, graphics, and film.",
+    "We sit beside Codeaxes, who build products and technology. Together we can take a brand from idea to interface: try-on, showroom, landing, the object in the hand. Apart, we remain a complete marketing house: search, social, performance, presence, graphics, and film.",
     "Clients come when they need a partner who will not flatter a brief. We prefer a short roster, long seasons, and work that still looks inevitable two years later. If a project wants volume without judgement, we are the wrong house, and we will say so before a contract is signed.",
   ],
   values: [
     {
       title: "Curiosity",
-      body: "We ask until the real constraint appears. The first brief is rarely the brief. Heritage, margin, ego, and the thing the founder will not say in a kickoff—those are the materials.",
+      body: "We ask until the real constraint appears. The first brief is rarely the brief. Heritage, margin, ego, and the thing the founder will not say in a kickoff. Those are the materials.",
     },
     {
       title: "Clarity",
@@ -37,7 +37,7 @@ export const about = {
   whyClients: [
     "A single standard across channels, so the brand accumulates instead of restarting every quarter.",
     "Senior attention after the pitch. Direction, strategy, and craft are not handed to a bench you have never met.",
-    "Honesty about budget, timing, and what will not work—including when we are the wrong partner.",
+    "Honesty about budget, timing, and what will not work, including when we are the wrong partner.",
     "A sibling technology studio, Codeaxes, when the experience must be built, not merely advertised.",
     "Confidentiality as a default. Public plates are published only when the client wants the work seen.",
   ],

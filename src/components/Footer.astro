@@ -4,17 +4,15 @@ import { services } from "../content/services";
 import Mark from "./Mark.astro";
 ---
 
-<footer class="relative z-10 border-t border-gilt/20 bg-ink">
+<footer class="relative z-10 bg-ink text-ivory">
   <div class="shell py-16 lg:py-24">
     <div class="grid gap-14 lg:grid-cols-12">
       <div class="lg:col-span-5">
-        <a href="/" class="flex items-center gap-3 text-gilt">
+        <a href="/" class="flex items-center gap-3 text-yellow">
           <Mark class="h-8 w-8" />
-          <span class="font-display text-[1.35rem] tracking-tight text-ivory">Kuroaxe</span>
+          <span class="font-display text-[1.25rem] font-extrabold tracking-tight text-ivory">Kuroaxe</span>
         </a>
-        <p class="mt-8 max-w-sm font-display text-3xl font-light italic leading-tight text-ivory/90">
-          {site.tagline}
-        </p>
+        <p class="mt-8 max-w-sm font-display text-3xl font-extrabold leading-tight text-ivory">{site.tagline}</p>
         <p class="mt-6 text-sm text-bone">{site.studios}</p>
       </div>
 
@@ -25,7 +23,7 @@ import Mark from "./Mark.astro";
             {
               nav.map((item) => (
                 <li>
-                  <a class="transition-colors hover:text-gilt" href={item.href}>
+                  <a class="transition-colors hover:text-yellow" href={item.href}>
                     {item.label}
                   </a>
                 </li>
@@ -33,7 +31,7 @@ import Mark from "./Mark.astro";
             }
             <li>
               <a
-                class="inline-flex items-center gap-1 transition-colors hover:text-gilt"
+                class="inline-flex items-center gap-1 transition-colors hover:text-turquoise"
                 href={site.codeaxes.url}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -50,7 +48,7 @@ import Mark from "./Mark.astro";
             {
               services.map((service) => (
                 <li>
-                  <a class="transition-colors hover:text-gilt" href={service.href}>
+                  <a class="transition-colors hover:text-yellow" href={service.href}>
                     {service.title}
                   </a>
                 </li>
@@ -62,16 +60,16 @@ import Mark from "./Mark.astro";
           <p class="kicker">Atelier</p>
           <ul class="mt-5 space-y-3 text-sm text-ivory/85">
             <li>
-              <a class="transition-colors hover:text-gilt" href={`mailto:${site.email}`}>{site.email}</a>
+              <a class="transition-colors hover:text-turquoise" href={`mailto:${site.email}`}>{site.email}</a>
             </li>
             <li>
-              <a class="transition-colors hover:text-gilt" href={site.phoneHref}>{site.phone}</a>
+              <a class="transition-colors hover:text-yellow" href={site.phoneHref}>{site.phone}</a>
             </li>
             {
               site.socials.map((social) => (
                 <li>
                   <a
-                    class="transition-colors hover:text-gilt"
+                    class="transition-colors hover:text-turquoise"
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -87,11 +85,9 @@ import Mark from "./Mark.astro";
       </div>
     </div>
 
-    <div class="mt-16 h-px bg-gilt/20"></div>
+    <div class="mt-16 h-px bg-white/10"></div>
 
-    <div
-      class="mt-8 flex flex-col gap-4 text-xs tracking-wide text-bone sm:flex-row sm:items-center sm:justify-between"
-    >
+    <div class="mt-8 flex flex-col gap-4 text-xs tracking-wide text-bone sm:flex-row sm:items-center sm:justify-between">
       <p>© {new Date().getFullYear()} Kuroaxe. All rights reserved.</p>
       <p>{site.codeaxes.note}</p>
       <p class="flex gap-6">

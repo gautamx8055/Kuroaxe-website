@@ -71,8 +71,8 @@ import { site } from "../content/site";
   <p class="mt-8 text-sm text-ink/65">{contact.privacy}</p>
 
   <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-    <button type="submit" class="btn-ink">Send enquiry</button>
-    <a class="link-gilt !text-ink" href={contact.meeting.href}>{contact.meeting.label}</a>
+    <button type="submit" class="btn-primary">Send enquiry</button>
+    <a class="link-gilt scribble-double !text-ink" href={contact.meeting.href}>{contact.meeting.label}</a>
   </div>
 
   <p id="form-status" class="mt-6 text-sm" role="status" aria-live="polite"></p>
@@ -85,9 +85,12 @@ import { site } from "../content/site";
     width: 100%;
     min-height: 2.75rem;
     border: none;
-    border-bottom: 1px solid color-mix(in oklab, var(--color-ink) 22%, transparent);
-    background: transparent;
-    padding: 0.55rem 0;
+    background-color: transparent;
+    background-image: url("/scribbles/field-ink.svg");
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    background-size: 100% 10px;
+    padding: 0.55rem 0 0.7rem;
     color: var(--color-ink);
     font: inherit;
     border-radius: 0;
@@ -95,17 +98,17 @@ import { site } from "../content/site";
 
   .field:focus {
     outline: none;
-    border-bottom-color: var(--color-gilt);
+    background-image: url("/scribbles/field-teal.svg");
   }
 
   .field[aria-invalid="true"] {
-    border-bottom-color: #8a2a2a;
+    background-image: url("/scribbles/field-orange.svg");
   }
 
   .error {
     margin-top: 0.4rem;
     font-size: 0.8rem;
-    color: #8a2a2a;
+    color: var(--color-orange);
   }
 </style>
 
@@ -186,7 +189,7 @@ import { site } from "../content/site";
       ]
         .filter((line) => line !== "")
         .join("\n");
-      const mailto = `mailto:${recipient}?subject=${encodeURIComponent(`Enquiry — ${company}`)}&body=${encodeURIComponent(body)}`;
+      const mailto = `mailto:${recipient}?subject=${encodeURIComponent(`Enquiry: ${company}`)}&body=${encodeURIComponent(body)}`;
       status.textContent = `Opening your email client. If nothing appears, write to ${recipient}.`;
       window.location.href = mailto;
     });

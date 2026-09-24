@@ -24,7 +24,7 @@ export function serviceGraph(service: Service) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: `${service.title} — ${site.name}`,
+    name: `${service.title} | ${site.name}`,
     description: service.description,
     provider: {
       "@type": "Organization",

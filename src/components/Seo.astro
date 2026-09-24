@@ -12,7 +12,7 @@ interface Props {
 const { title, description, path, ogType = "website", index = true } = Astro.props;
 const canonical = new URL(path, site.url).href;
 const ogImage = new URL("/og.svg", site.url).href;
-const fullTitle = title.includes(site.name) ? title : `${title} — ${site.name}`;
+const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
 ---
 
 <title>{fullTitle}</title>

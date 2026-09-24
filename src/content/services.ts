@@ -31,11 +31,11 @@ export const services: Service[] = [
     title: "Search",
     shortTitle: "SEO",
     kicker: "Organic authority",
-    short: "Long-term visibility, composed like a catalogue raisonné—not a sprint of shortcuts.",
+    short: "Long-term visibility, composed like a catalogue raisonné, not a sprint of shortcuts.",
     jewel: "sapphire",
     heroLine: "Be found for the things that should belong to you.",
     description:
-      "Search is reputation made machine-readable. Kuroaxe builds technical foundations, editorial content systems, and authority that compounds—so ambitious brands own the queries that matter, year after year.",
+      "Search is reputation made machine-readable. Kuroaxe builds technical foundations, editorial content systems, and authority that compounds, so ambitious brands own the queries that matter, year after year.",
     problems: [
       {
         title: "Rankings without revenue",
@@ -94,7 +94,7 @@ export const services: Service[] = [
       {
         question: "Can you work with our existing site?",
         answer:
-          "Yes. We regularly inherit imperfect stacks and improve them without a vanity redesign—unless the architecture itself is the constraint.",
+          "Yes. We regularly inherit imperfect stacks and improve them without a vanity redesign, unless the architecture itself is the constraint.",
       },
       {
         question: "How do you report?",
@@ -113,7 +113,7 @@ export const services: Service[] = [
     jewel: "burgundy",
     heroLine: "Show up as a house, not a content machine.",
     description:
-      "Social media marketing at Kuroaxe is editorial direction for public rooms. We plan, art-direct, and host conversations so a brand feels inevitable in culture—without posting for the algorithm’s amusement.",
+      "Social media marketing at Kuroaxe is editorial direction for public rooms. We plan, art-direct, and host conversations so a brand feels inevitable in culture, without posting for the algorithm’s amusement.",
     problems: [
       {
         title: "Volume without memory",
@@ -193,7 +193,7 @@ export const services: Service[] = [
     problems: [
       {
         title: "Cheap clicks, expensive customers",
-        body: "We rebuild funnels around qualified demand and contribution margin—not CPC vanity.",
+        body: "We rebuild funnels around qualified demand and contribution margin, not CPC vanity.",
       },
       {
         title: "Creative that apologises for advertising",
@@ -263,7 +263,7 @@ export const services: Service[] = [
     title: "AR / VR",
     shortTitle: "AR / VR",
     kicker: "Presence",
-    short: "Experiences you can stand inside. Product, place, and ritual—without a gimmick.",
+    short: "Experiences you can stand inside. Product, place, and ritual, without a gimmick.",
     jewel: "tealink",
     heroLine: "Bring the salon to wherever they are.",
     description:
@@ -330,7 +330,7 @@ export const services: Service[] = [
       {
         question: "How do you measure success?",
         answer:
-          "Dwell, completion, share, and the commercial action you named in the brief—not downloads alone.",
+          "Dwell, completion, share, and the commercial action you named in the brief, not downloads alone.",
       },
     ],
   },
@@ -344,7 +344,7 @@ export const services: Service[] = [
     jewel: "ivory",
     heroLine: "A language other houses cannot speak.",
     description:
-      "Graphic design at Kuroaxe is the discipline of looking inevitable. Marks, type, campaigns, packaging, and digital surfaces are drawn as a single system so every appearance—paid, owned, or printed—feels like the same house.",
+      "Graphic design at Kuroaxe is the discipline of looking inevitable. Marks, type, campaigns, packaging, and digital surfaces are drawn as a single system so every appearance (paid, owned, or printed) feels like the same house.",
     problems: [
       {
         title: "A logo with no grammar",
@@ -393,7 +393,7 @@ export const services: Service[] = [
       {
         question: "Do you only do full identity programmes?",
         answer:
-          "No. We also art-direct a season, a launch, or a collateral system inside an existing identity—if the identity can bear it.",
+          "No. We also art-direct a season, a launch, or a collateral system inside an existing identity, if the identity can bear it.",
       },
       {
         question: "Will we own the files?",
@@ -418,7 +418,7 @@ export const services: Service[] = [
     title: "Film",
     shortTitle: "Video",
     kicker: "Moving image",
-    short: "Brand films, product, and social—cut with the patience of cinema and the purpose of a campaign.",
+    short: "Brand films, product, and social, cut with the patience of cinema and the purpose of a campaign.",
     jewel: "crimson",
     heroLine: "Make something people stay for.",
     description:
@@ -426,7 +426,7 @@ export const services: Service[] = [
     problems: [
       {
         title: "A showreel of other people’s taste",
-        body: "We start from the brand’s light, pace, and silence—not a moodboard of last year’s winners.",
+        body: "We start from the brand’s light, pace, and silence, not a moodboard of last year’s winners.",
       },
       {
         title: "Social cuts that betray the hero film",
@@ -453,7 +453,7 @@ export const services: Service[] = [
       { title: "Treatment", body: "The idea, the references, the thing we will not do." },
       { title: "Board", body: "Shots, stills, sound, and the cut in principle." },
       { title: "Produce", body: "Cast, location, light. Or a studio that behaves like one." },
-      { title: "Cut", body: "Picture, sound, colour, titles—one finish." },
+      { title: "Cut", body: "Picture, sound, colour, titles: one finish." },
       { title: "Distribute", body: "Hero, social, paid, and the objects that live after the premiere." },
     ],
     tools: [

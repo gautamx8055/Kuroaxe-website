@@ -5,123 +5,13 @@ gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.config({ ignoreMobileResize: true });
 
 export function initAtelierMotion() {
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  initLookbook();
+
   const mm = gsap.matchMedia();
-
-  document.querySelectorAll<HTMLElement>("[data-hero-line]").forEach((line) => {
-    const reveal = () => {
-      line.style.animation = "none";
-      line.style.transform = "none";
-    };
-    line.addEventListener("animationend", reveal, { once: true });
-    window.setTimeout(reveal, 2000);
-  });
-
-  if (!reduce) {
-    const cue = document.querySelector("[data-scroll-cue]");
-    if (cue) {
-      gsap.fromTo(
-        cue,
-        { scaleY: 0 },
-        { scaleY: 1, duration: 1.2, ease: "power3.out", delay: 0.9, transformOrigin: "top center" },
-      );
-    }
-  }
-
-  mm.add("(min-width: 1024px) and (prefers-reduced-motion: no-preference)", () => {
-    const lookbook = document.querySelector<HTMLElement>("[data-lookbook]");
-    const track = document.querySelector<HTMLElement>("[data-lookbook-track]");
-    const bar = document.querySelector<HTMLElement>("[data-lookbook-bar]");
-    const folio = document.querySelector<HTMLElement>("[data-lookbook-folio]");
-    const panels = gsap.utils.toArray<HTMLElement>("[data-lookbook-panel]");
-    if (!lookbook || !track || panels.length === 0) return;
-
-    const articles = gsap.utils.toArray<HTMLElement>("[data-lookbook-track] > article");
-    const sizePlates = () => {
-      const width = lookbook.offsetWidth;
-      articles.forEach((article) => {
-        article.style.width = `${width}px`;
-      });
-    };
-
-    const applyPlate = (progress: number) => {
-      const last = Math.max(panels.length - 1, 1);
-      const active = Math.round(progress * last);
-      if (folio) {
-        folio.textContent = `${String(active + 1).padStart(2, "0")} / ${String(panels.length).padStart(2, "0")}`;
-      }
-      panels.forEach((panel, index) => {
-        const point = index / last;
-        const dist = Math.abs(progress - point);
-        const closeness = Math.max(0, 1 - dist * 1.2);
-        panel.style.setProperty("--plate-scale", String(0.88 + closeness * 0.12));
-        panel.style.setProperty("--plate-dim", String(0.42 + closeness * 0.58));
-      });
-    };
-
-    sizePlates();
-    applyPlate(0);
-    ScrollTrigger.addEventListener("refreshInit", sizePlates);
-
-    const tween = gsap.to(track, {
-      x: () => -(track.scrollWidth - lookbook.offsetWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: lookbook,
-        pin: true,
-        pinSpacing: true,
-        scrub: 0.8,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        end: () => `+=${Math.max(track.scrollWidth - lookbook.offsetWidth, 900)}`,
-        onUpdate: (self) => {
-          if (bar) bar.style.transform = `scaleX(${self.progress})`;
-          applyPlate(self.progress);
-        },
-      },
-    });
-
-    return () => {
-      ScrollTrigger.removeEventListener("refreshInit", sizePlates);
-      tween.scrollTrigger?.kill();
-      tween.kill();
-      gsap.set(track, { clearProps: "transform,x" });
-      articles.forEach((article) => article.style.removeProperty("width"));
-      panels.forEach((panel) => {
-        panel.style.removeProperty("--plate-scale");
-        panel.style.removeProperty("--plate-dim");
-      });
-      if (bar) bar.style.transform = "";
-      if (folio) {
-        folio.textContent = `01 / ${String(panels.length).padStart(2, "0")}`;
-      }
-    };
-  });
 
   mm.add("(prefers-reduced-motion: no-preference)", () => {
     const triggers: ScrollTrigger[] = [];
     const tweens: gsap.core.Tween[] = [];
-
-    document.querySelectorAll<HTMLElement>("[data-hero-frame]").forEach((frame) => {
-      const hero = frame.closest<HTMLElement>("[data-hero]") ?? frame.parentElement;
-      if (!hero) return;
-      const tween = gsap.fromTo(
-        frame,
-        { clipPath: "inset(0% 0% 0% 0%)" },
-        {
-          clipPath: "inset(12% 8% 0% 8%)",
-          ease: "none",
-          scrollTrigger: {
-            trigger: hero,
-            scrub: 0.55,
-            start: "top top",
-            end: "bottom top",
-          },
-        },
-      );
-      tweens.push(tween);
-      if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
-    });
 
     document.querySelectorAll<HTMLElement>("[data-parallax]").forEach((el) => {
       const parent = el.parentElement;
@@ -263,4 +153,96 @@ export function initAtelierMotion() {
   const refresh = () => ScrollTrigger.refresh();
   window.addEventListener("load", refresh);
   void document.fonts?.ready.then(refresh);
+}
+
+function initLookbook() {
+  const root = document.querySelector<HTMLElement>("[data-lookbook]");
+  if (!root) return;
+
+  const sheets = Array.from(root.querySelectorAll<HTMLElement>("[data-lookbook-sheet]"));
+  const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-lookbook-tab]"));
+  const copies = Array.from(root.querySelectorAll<HTMLElement>("[data-lookbook-copy]"));
+  const folio = root.querySelector<HTMLElement>("[data-lookbook-folio]");
+  const prev = root.querySelector<HTMLButtonElement>("[data-lookbook-prev]");
+  const next = root.querySelector<HTMLButtonElement>("[data-lookbook-next]");
+  if (sheets.length === 0) return;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const stacked = window.matchMedia("(min-width: 1024px)");
+  let active = 0;
+
+  const slots = [
+    { xPercent: 0, yPercent: 0, rotate: -1.2, scale: 1, opacity: 1 },
+    { xPercent: 9, yPercent: 7, rotate: 5.5, scale: 0.93, opacity: 0.92 },
+    { xPercent: 16, yPercent: 13, rotate: -6.5, scale: 0.88, opacity: 0.8 },
+    { xPercent: 22, yPercent: 19, rotate: 8, scale: 0.84, opacity: 0.68 },
+  ];
+
+  const layout = (index: number, animate: boolean) => {
+    active = (index + sheets.length) % sheets.length;
+    const duration = animate && !reduce.matches ? 0.58 : 0;
+    const ease = "power3.out";
+
+    sheets.forEach((sheet, i) => {
+      const stack = (i - active + sheets.length) % sheets.length;
+      const slot = slots[Math.min(stack, slots.length - 1)];
+      sheet.classList.toggle("is-active", i === active);
+      sheet.style.zIndex = String(20 - stack);
+      const to = stacked.matches
+        ? {
+            xPercent: slot.xPercent,
+            yPercent: slot.yPercent,
+            rotate: slot.rotate,
+            scale: slot.scale,
+            opacity: i === active ? 1 : slot.opacity,
+          }
+        : { xPercent: 0, yPercent: 0, rotate: 0, scale: 1, opacity: i === active ? 1 : 0 };
+      gsap.to(sheet, { ...to, duration, ease, overwrite: "auto" });
+    });
+
+    tabs.forEach((tab, i) => {
+      const on = i === active;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", on ? "true" : "false");
+      tab.tabIndex = on ? 0 : -1;
+    });
+
+    copies.forEach((copy, i) => {
+      copy.hidden = i !== active;
+    });
+
+    if (folio) {
+      folio.textContent = `${String(active + 1).padStart(2, "0")} / ${String(sheets.length).padStart(2, "0")}`;
+    }
+  };
+
+  const go = (index: number) => layout(index, true);
+
+  sheets.forEach((sheet, i) => {
+    sheet.addEventListener("click", () => {
+      go(i);
+      tabs[i]?.focus();
+    });
+  });
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => go(i));
+  });
+  prev?.addEventListener("click", () => go(active - 1));
+  next?.addEventListener("click", () => go(active + 1));
+
+  root.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      event.preventDefault();
+      go(active + 1);
+      tabs[active]?.focus();
+    }
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      event.preventDefault();
+      go(active - 1);
+      tabs[active]?.focus();
+    }
+  });
+
+  stacked.addEventListener("change", () => layout(active, false));
+  layout(0, false);
 }
